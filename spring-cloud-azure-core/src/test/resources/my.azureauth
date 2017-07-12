@@ -1,0 +1,7 @@
+client=5440bb8c-8ea5-4fea-92af-e4f1185119b0
+tenant=72f988bf-86f1-41af-91ab-2d7cd011db47
+key=8dadadd1-6375-4eef-969f-45324d1f943e
+subscription=2085065b-00f8-4cba-9675-ba15f4d4ab66
+authURL=https\://login.microsoftonline.com/
+managementURI=https\://management.core.windows.net/
+baseURL=https\://management.azure.com/
