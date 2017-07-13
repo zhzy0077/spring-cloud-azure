@@ -1,6 +1,9 @@
 package com.microsoft.azure.cloud.redis;
 
+import com.microsoft.azure.cloud.core.authentication.Credentials;
+import com.microsoft.azure.cloud.core.authentication.ServicePrincipalCredentials;
 import com.microsoft.azure.cloud.core.context.AzureContext;
+import com.microsoft.azure.cloud.core.context.AzureContextFactoryBean;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,20 +15,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Created by t-zhzhe on 7/11/2017 in spring-cloud-azure.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { AzureTestContextConfiguration.class, AzureRedisCacheConnectionFactoryTest.Config.class })
+@ContextConfiguration(classes = { AzureTestContextConfiguration.class })
 public class AzureRedisCacheConnectionFactoryTest {
-    @Configuration
-    static class Config {
-        @Bean
-        public RedisConnectionFactory connectionFactory(AzureContext azureContext) {
-            return new AzureRedisCacheConnectionFactory(azureContext, "rereredis");
-        }
-    }
-
     @Autowired
     private RedisConnectionFactory connectionFactory;
 

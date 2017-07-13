@@ -6,12 +6,15 @@ import com.microsoft.azure.cloud.core.context.AzureContext;
 import com.microsoft.azure.cloud.core.context.AzureContextFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 
-/**
- * Created by t-zhzhe on 7/11/2017 in spring-cloud-azure.
- */
 @Configuration
 public class AzureTestContextConfiguration {
+    @Bean
+    public RedisConnectionFactory connectionFactory(AzureContext azureContext) {
+        return new AzureRedisCacheConnectionFactory(azureContext, "rereredis");
+    }
+
     @Bean
     public AzureContextFactoryBean azureContextFactoryBean(Credentials credentials) {
         return new AzureContextFactoryBean(credentials, "2085065b-00f8-4cba-9675-ba15f4d4ab66", "redis");

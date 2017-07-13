@@ -47,6 +47,7 @@ public class AzureRedisCacheConnectionFactory implements RedisConnectionFactory,
         info.setPassword(redisCache.getKeys().primaryKey());
         connectionFactory = new JedisConnectionFactory(info);
         connectionFactory.setUsePool(true);
+        connectionFactory.afterPropertiesSet();
     }
 
     @Override
