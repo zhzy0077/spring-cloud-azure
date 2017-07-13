@@ -1,6 +1,7 @@
 package com.microsoft.azure.cloud.redis;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AzureTestContextConfiguration.class, WithCacheEnabledTest.Config.class})
 public class WithCacheEnabledTest {
+    @Autowired
+    private Service service;
+    @Autowired
+    private AzureRedisCacheConnectionFactory connectionFactory;
+
+    @Before
+    public void setUp() throws Exception {
+        connectionFactory.getConnection().flushDb();
+    }
+
+    @Test
+    public void testCacheable() throws Exception {
+        int res = service.work(1);
+        Assert.assertEquals(1, res);
+        Assert.assertEquals(1, Service.hitCount);
+        res = service.work(1);
+        Assert.assertEquals(1, res);
+        Assert.assertEquals(1, Service.hitCount); // Won't increase
+
+    }
+
     static class Service {
         public static int hitCount = 0;
 
@@ -45,19 +67,5 @@ public class WithCacheEnabledTest {
         public Service service() {
             return new Service();
         }
-    }
-
-    @Autowired
-    private Service service;
-
-    @Test
-    public void testCacheable() throws Exception {
-        int res = service.work(1);
-        Assert.assertEquals(1, res);
-        Assert.assertEquals(1, Service.hitCount);
-        res = service.work(1);
-        Assert.assertEquals(1, res);
-        Assert.assertEquals(1, Service.hitCount); // Won't increase
-
     }
 }
