@@ -35,7 +35,6 @@ public class WithCacheEnabledTest {
         res = service.work(1);
         Assert.assertEquals(1, res);
         Assert.assertEquals(1, Service.hitCount); // Won't increase
-
     }
 
     static class Service {

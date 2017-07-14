@@ -11,5 +11,40 @@
 
     <artifactId>spring-cloud-starter-azure-redis</artifactId>
 
+    <properties>
+        <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.microsoft.azure.cloud</groupId>
+            <artifactId>spring-cloud-azure-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure.cloud</groupId>
+            <artifactId>spring-cloud-azure-redis</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure.cloud</groupId>
+            <artifactId>spring-cloud-starter-azure-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+    </dependencies>
 </project>
